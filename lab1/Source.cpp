@@ -4,6 +4,7 @@
 Вариант 9
 Задание: перевести дециметры в ладони и выразить в вёрстах
 */
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #define DECIMETERS_IN_PALM 0.984252
@@ -24,8 +25,8 @@ void main(void) {
 	number = EnterNumber();
 
 	printf("%d дециметров- это %.3f ладоней и %.6f верст",	number, 
-															number * DECIMETERS_IN_PALM, 
-															number * DECIMETERS_IN_PALM * PALM_IN_MILES);
+								number * DECIMETERS_IN_PALM, 
+								number * DECIMETERS_IN_PALM * PALM_IN_MILES);
 
 	_getch();
 }
