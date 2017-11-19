@@ -11,7 +11,7 @@
 #include <conio.h>
 #include <locale>
 
-int		EnterNumber();
+int	EnterNumber();
 bool	BoolPrime(long long number);
 void	PrimeNumber(long long *data, int size);
 void	EnterArrayAndSearchPrimeNumber(int SizeArray);
