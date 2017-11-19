@@ -1,3 +1,9 @@
+﻿/*
+Лазарян Сергей Каренович
+Лабораторная работа №1
+Вариант 9
+Задание: перевести дециметры в ладони и выразить в вёрстах
+*/
 #define _CRT_SECURE_NO_WARNINGS
 
 #define DECIMETERS_IN_PALM 0.984252
@@ -14,10 +20,12 @@ void main(void) {
 	system("cls");
 
 	int number;
-	printf("Введите колличество дециметров: ");
+	printf("Введите количество дециметров: ");
 	number = EnterNumber();
 
-	printf("%d дециметров- это %.3f ладоней %.6f верст", number, number * DECIMETERS_IN_PALM, number * DECIMETERS_IN_PALM * PALM_IN_MILES);
+	printf("%d дециметров- это %.3f ладоней и %.6f верст",	number, 
+															number * DECIMETERS_IN_PALM, 
+															number * DECIMETERS_IN_PALM * PALM_IN_MILES);
 
 	_getch();
 }
@@ -28,6 +36,7 @@ int EnterNumber() {
 
 	if (getchar() != '\n') {
 		printf("Ошибка ввода. Повторите попытку: ");
+		while (getchar() != '\n');
 		EnterNumber();
 	}
 
