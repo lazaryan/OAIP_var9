@@ -14,7 +14,7 @@ void main(void) {
 	system("chcp 1251");
 	system("cls");
 
-	char	str[MAX_LENGTH] = "";
+	char str[MAX_LENGTH] = "";
 
 	printf("Введите строку:\n");
 
@@ -27,29 +27,26 @@ void main(void) {
 void AddWord(char *str) {
 	char word[MAX_LENGTH] = "";
 	int leight = strlen(str),
-		pos1 = 0,
-		pos2;
+	    pos1 = 0,
+	    pos2;
 
-	for (int i = 0; i < leight; i++) {
+	for (int i = 0; i < leight; i++)
 		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\0') {
 			pos2 = i;
 
 			ParsingString(str, word, pos1, pos2);
-			if (strlen(word) % 2 != 0) {
+			if (strlen(word) % 2 != 0)
 				CheckString(word);
-			}
 
 			pos1 = pos2 + 1;
 		}
-	}
 }
 
 void ParsingString(char *str, char *word, int pos1, int pos2) {
 	int leight = strlen(word);
 
-	for (int i = 0; i < leight; i++) {
+	for (int i = 0; i < leight; i++)
 		word[i] = '\0';
-	}
 
 	char *ptr = str;
 	ptr = ptr + pos1;
@@ -61,8 +58,8 @@ void ParsingString(char *str, char *word, int pos1, int pos2) {
 void CheckString(char *word) {
 	char newWord[MAX_LENGTH] = "";
 	int leight = strlen(word),
-		pos1 =0,
-		pos2;
+	    pos1 =0,
+	    pos2;
 
 	for (int i = 0; i < leight; i++) {
 		if ((i == (leight-1)) && pos1 == 0) {
@@ -71,8 +68,8 @@ void CheckString(char *word) {
 		}
 
 		if (!(
-			((int)word[i] >= 65		&& (int)word[i] <= 90)	||
-			((int)word[i] >= 97		&& (int)word[i] <= 122) ||
+			((int)word[i] >= 65	&& (int)word[i] <= 90)	||
+			((int)word[i] >= 97	&& (int)word[i] <= 122) ||
 			((int)word[i] >= 128	&& (int)word[i] <= 175) ||
 			((int)word[i] >= 224	&& (int)word[i] <= 247)
 			)) {
