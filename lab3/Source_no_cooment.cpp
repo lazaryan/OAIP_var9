@@ -12,9 +12,9 @@
 #include <conio.h>
 #include <locale>
 
-void ParsingString(char *StringText);
 void CheckWord(char *word);
 void EnterWord(char *word);
+void ParsingString(char *StringText);
 void GetWord(char *StringText, int position1, int position2 , int finish);
 
 int main()
@@ -34,9 +34,9 @@ int main()
 
 void ParsingString(char *StringText)
 {
-	int position1 = 0,
+	int 	length = strlen(StringText),
+		position1 = 0,
 		position2,
-		length = strlen(StringText);
 
 	for (int i = 0; i < length; i++)
 	{
@@ -70,22 +70,22 @@ void GetWord(char *StringText, int position1, int position2, int finish)
 
 void CheckWord(char *word)
 {
-	int length = strlen(word),
-		position1 =0,
+	int 	length = strlen(word),
+		position1 = 0,
 		position2;
 
 	for (int i = 0; i < length; i++)
 	{
 		if (!(
-			((int)word[i] >= 65 && (int)word[i] <= 90) ||
-			((int)word[i] >= 97 && (int)word[i] <= 122) ||
-			((int)word[i] >= 128 && (int)word[i] <= 175) ||
-			((int)word[i] >= 224 && (int)word[i] <= 247) ||
+			((int)word[i] >= 65 	&& (int)word[i] <= 90) 	||
+			((int)word[i] >= 97 	&& (int)word[i] <= 122) ||
+			((int)word[i] >= 128 	&& (int)word[i] <= 175) ||
+			((int)word[i] >= 224 	&& (int)word[i] <= 247) ||
 			((int)word[i] < 0)
 			)) 
 		{
 			position2 = i - 1;
-			GetWord(word, position1, position2,1);
+			GetWord(word, position1, position2, 1);
 			position1 = i + 1;
 		}
 		
