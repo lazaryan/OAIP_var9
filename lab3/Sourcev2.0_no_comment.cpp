@@ -12,6 +12,7 @@
 #include <stdio.h> 
 #include <conio.h>
 #include <locale>
+#include <string.h>
 
 void CheckWord		(char *word);
 void EnterWord		(char *word);
@@ -66,13 +67,8 @@ void CheckWord(char *word) {
 			length = strlen(word);
 		}
 
-		if (i == (length - 1)){
+		if (i == (length - 1))
 			EnterWord(word);
-			break;
-		}
-
-		if (word[i + 1] == '\0')
-			GetWord(word, i, 1);
 	}
 }
 
