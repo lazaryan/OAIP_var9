@@ -31,7 +31,7 @@ void main() {
 
 void CheckSourceFile(FILE* SourceFile) {
 	if (SourceFile == NULL) {
-		printf("Ошибка. Файл не найден");
+		printf("РћС€РёР±РєР°. Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ!");
 		_getch();
 		exit(0);
 	}
@@ -79,6 +79,6 @@ int StringLength(char *StringText) {
 }
 
 void EnterWord(char *word, FILE *NewFile) {
-	if (strlen(word) % 2 != 0)
+	if (StringLength(word) % 2 != 0)
 		fprintf(NewFile,"%s ", word);
 }
