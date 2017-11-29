@@ -7,7 +7,7 @@
 #include <conio.h>
 #include <locale>
 
-void CheckSourceFile(FILE* SourceFile);
+void CheckSourceFile	(FILE* SourceFile);
 void EnterWord		(char *word, FILE *NewFile);
 void CheckWord		(char *word, FILE *NewFile);
 void ParsingFile	(FILE* SourceFile, FILE *NewFile);
