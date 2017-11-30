@@ -7,25 +7,24 @@
 #include <conio.h>
 #include <locale>
 
-void CheckSourceFile	(FILE* SourceFile);
-void EnterWord		(char *word, FILE *NewFile);
-void CheckWord		(char *word, FILE *NewFile);
-void ParsingFile	(FILE* SourceFile, FILE *NewFile);
-void GetWord		(char *StringText, int PositionFinishSymbol, int finish, FILE *NewFile);
+void EnterWord		(char *word);
+void CheckWord		(char *word);
+void ParsingFile	(FILE* SourceFile);
+void CheckSourceFile(FILE* SourceFile);
+void GetWord		(char *StringText, int PositionFinishSymbol, int finish);
 
-int StringLength	(char *StringText);
+int StringLength(char *StringText);
 
 void main() {
 	system("chcp 1251");
 	system("cls");
 
-	FILE *SourceFile	= fopen("SourceFile.txt", "r");
-	FILE *NewFile		= fopen("NewFile.txt", "w");
+	FILE *SourceFile = fopen("SourceFile.txt", "r");
+	FILE *NewFile = fopen("NewFile.txt", "w");fclose(NewFile);
 
 	CheckSourceFile(SourceFile);
-	ParsingFile(SourceFile,NewFile);
+	ParsingFile(SourceFile);
 
-	fclose(NewFile);
 	fclose(SourceFile);
 }
 
@@ -37,30 +36,30 @@ void CheckSourceFile(FILE* SourceFile) {
 	}
 }
 
-void ParsingFile(FILE* SourceFile, FILE *NewFile) {
+void ParsingFile(FILE* SourceFile) {
 	char word[MAX_LENGTH] = "";
 
 	while (!feof(SourceFile)) {
 		fscanf(SourceFile, "%s", word);
-		CheckWord(word, NewFile);
+		CheckWord(word);
 	}
 }
 
-void GetWord(char *StringText, int PositionFinishSymbol, int finish, FILE *NewFile) {
+void GetWord(char *StringText, int PositionFinishSymbol, int finish) {
 	char *word = (char*)calloc(PositionFinishSymbol + 1, sizeof(char*));
 
 	for (int i = 0; i < PositionFinishSymbol; i++)
 		word[i] = StringText[i];
 
-	!finish ? CheckWord(word, NewFile) : EnterWord(word, NewFile);
+	!finish ? CheckWord(word) : EnterWord(word);
 }
 
-void CheckWord(char *word, FILE *NewFile) {
+void CheckWord(char *word) {
 	int length = StringLength(word);
 
 	for (int i = 0; i < length; i++) {
 		if (!CHECK_CODE_SYMBOL) {
-			GetWord(word, i, 1, NewFile);
+			GetWord(word, i, 1);
 
 			word = word + i + 1;
 			i = -1;
@@ -68,7 +67,7 @@ void CheckWord(char *word, FILE *NewFile) {
 		}
 
 		if (i == (length - 1))
-			EnterWord(word, NewFile);
+			EnterWord(word);
 	}
 }
 
@@ -78,7 +77,9 @@ int StringLength(char *StringText) {
 	return i;
 }
 
-void EnterWord(char *word, FILE *NewFile) {
+void EnterWord(char *word) {
+	FILE *NewFile = fopen("NewFile.txt", "a");
 	if (StringLength(word) % 2 != 0)
-		fprintf(NewFile,"%s ", word);
+		fprintf(NewFile, "%s ", word);
+	fclose(NewFile);
 }
