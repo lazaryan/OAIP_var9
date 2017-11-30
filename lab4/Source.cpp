@@ -10,7 +10,7 @@
 void EnterWord		(char *word);
 void CheckWord		(char *word);
 void ParsingFile	(FILE* SourceFile);
-void CheckSourceFile(FILE* SourceFile);
+void CheckSourceFile	(FILE* SourceFile);
 void GetWord		(char *StringText, int PositionFinishSymbol, int finish);
 
 int StringLength(char *StringText);
