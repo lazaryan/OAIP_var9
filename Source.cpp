@@ -21,22 +21,40 @@ struct cur {
 	char	OfficeGIBDD[MAX_LENGTH_OFFICEGIBDD] = "";
 };
 
-void AddWord			(char *Buf_struct, char *name, int position, int code_arg);
-void ChoiceStruct		(char *Buf_struct, struct cur *Auto);
-void AddElemetsStruct	(char *Buf_struct, struct cur *Auto);
-void ErrorEnterWord		(char* word, int size, int code_arg);
-void EnterStructs		(struct cur *Auto);
-void ChoiceRequest		(int *request);
-void CheckName			(char* word);
-void EnterNumber		(int *n);
-void EnterStructs		(int *n);
-void EntryStruct		();
-void FormStruct			();
-void FormRequest		();
+void AddWord				(char *Buf_struct, char *name, int position, int code_arg);
 
-int StringLength		(char *StringText);
-int CountTab			(char *Buf_struct);
-int PositionTub			(char *Buf_struct);
+void ChoiceStruct			(char *Buf_struct, struct cur *Auto);
+void AddElemetsStruct		(char *Buf_struct, struct cur *Auto);
+
+void ErrorEnterWord			(char* word, int size, int code_arg);
+
+void EntryFile				(FILE *file, struct cur Auto);
+
+void CheckNumberOrChar		(char* word, int code_arg);
+void NumberSwitch			(char *word, int code_arg);
+
+void EnterStruct			(struct cur *Auto);
+
+void ChoiceRequest			(int *request);
+
+void ErrorFile				(FILE *file);
+
+void CheckName				(char* word);
+void CheckDate				(char* word);
+void CheckPhone				(char *word);
+void CheckOfficeGIBDD		(char *word);
+
+void EnterNumber			(int *n);
+void EnterStructs			(int *n);
+
+void EntryStruct			();
+void FormStruct				();
+void FormRequest			();
+
+int StringLength			(char *StringText);
+
+int CountTab				(char *Buf_struct);
+int PositionTub				(char *Buf_struct);
 
 void main() {
 	system("chcp 1251");
@@ -58,7 +76,7 @@ void main() {
 	default:break;
 	}
 
-	getchar();
+	_getch();
 }
 
 int StringLength(char *StringText) {
@@ -91,12 +109,10 @@ void ChoiceRequest(int *request) {
 
 	scanf("%d", request);
 
-	if (*request <= 0 	|| 
-		*request > 4 	|| 
-		getchar() != '\n') {
-			printf("Ошибка. Повторите ввод:\n");
-			while (getchar() != '\n');
-			ChoiceRequest(request);
+	if (*request <= 0 || *request > 4 || getchar() != '\n') {
+		printf("Ошибка. Повторите ввод:\n");
+		while (getchar() != '\n');
+		ChoiceRequest(request);
 	}
 
 }
@@ -105,21 +121,39 @@ void EnterStructs(int *n) {
 	struct cur *Auto = (struct cur *)malloc(sizeof(struct cur *) * *n);
 
 	FormStruct();
-
+	FILE *file = fopen("StructFile.txt", "a");
 	for (int i = 0; i < *n; i++) {
 		printf("Введите %d структуру:\n", i + 1);
 		EnterStruct(&Auto[i]);
+		EntryFile(file, Auto[i]);
 	}
+	fclose(file);
+}
+
+void ErrorFile(FILE *file) {
+	if (file == NULL) {
+		printf("Ошибка. Файл не найден. Прекращение рабботы программы!");
+		_getch();
+		exit(0);
+	}
+}
+
+void EntryFile(FILE *file , struct cur Auto) {
+	fprintf(file, "%s\t", Auto.name);
+	fprintf(file, "%s\t", Auto.NumberCur);
+	fprintf(file, "%s\t", Auto.NumberTechnicalCertificate);
+	fprintf(file, "%s\t", Auto.date);
+	fprintf(file, "%s\t", Auto.phone);
+	fprintf(file, "%s\0\n", Auto.OfficeGIBDD);
 }
 
 void EnterNumber(int *n) {
 	scanf("%d", n);
 
-	if (*n <= 0 || 
-		getchar() != '\n') {
-			printf("Ошибка ввода. Повторите попытку: ");
-			while (getchar() != '\n');
-			EnterNumber(n);
+	if (*n <= 0 || getchar() != '\n') {
+		printf("Ошибка ввода. Повторите попытку: ");
+		while (getchar() != '\n');
+		EnterNumber(n);
 	}
 }
 
@@ -187,7 +221,8 @@ void AddElemetsStruct(char *Buf_struct, struct cur *Auto) {
 	AddWord(Buf_struct, Auto->phone, position , 5);
 	Buf_struct = Buf_struct + position + 1;
 
-	AddWord(Buf_struct, Auto->OfficeGIBDD, StringLength(Buf_struct) + 1 , 6);
+	AddWord(Buf_struct, Auto->OfficeGIBDD, StringLength(Buf_struct) , 6);
+
 }
 
 int PositionTub(char *Buf_struct) {
@@ -205,31 +240,112 @@ void AddWord(char *Buf_struct, char *word, int position, int code_arg) {
 	for (int i = 0; i < position; i++)
 		word[i] = Buf_struct[i];
 
-	//CheckName(word);
-	switch (code_arg) {
-	case 1:
-		CheckName(word);
-		break;
-	case 2:break;
-	case 3:break;
-	case 4:break;
-	case 5:break;
-	case 6:break;
-	}
+	NumberSwitch(word, code_arg);
 }
 
 void CheckName(char* word) {
 	int length = StringLength(word);
 
 	for (int i = 0; i < length; i++) {
-		if (!(((int)word[i] >= 65 	&& (int)word[i] <= 90)		||
-			((int)word[i] 	>= 97 	&& (int)word[i] <= 122)		||
-			((int)word[i] 	>= -64 	&& (int)word[i] <= -1)		||
-			word[i] =='\n' || 
-			word[i] =='\0'
+		if (!(((int)word[i] >= 65 && (int)word[i] <= 90)	||
+			((int)word[i] >= 97 && (int)word[i] <= 122)		||
+			((int)word[i] >= -64 && (int)word[i] <= -1)		||
+			word[i] =='\n' || word[i] =='\0'
 			)) {
 			printf("Ошибка ввода имени. Повторите попытку: ");
-			ErrorEnterWord(word , MAX_LENGTH_NAME,1);
+			ErrorEnterWord(word , MAX_LENGTH_NAME , 1);
+			break;
+		}
+	}
+}
+
+void CheckNumberOrChar(char* word , int code_arg) {
+	int length = StringLength(word);
+
+	for (int i = 0; i < length; i++) {
+		if (!(((int)word[i] >= 65 && (int)word[i] <= 90) ||
+			((int)word[i] >= 97 && (int)word[i] <= 122) ||
+			((int)word[i] >= 48 && (int)word[i] <= 57) ||
+			word[i] == '\n' || word[i] == '\0'
+			)) {
+			printf("Ошибка ввода номера автомобиля. Повторите попытку: ");
+
+			switch (code_arg) {
+			case 2:
+				ErrorEnterWord(word, MAX_LENGTH_NUMBER_CUR, 2);
+				break;
+			case 3:
+				ErrorEnterWord(word, MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION, 3);
+				break;
+			}
+			break;
+		}
+	}
+}
+
+void CheckDate(char* word){
+	int length = StringLength(word);
+	if (length != LENGTH_DATE) {
+		printf("Ошибка ввода даты. Повторите попытку: ");
+		ErrorEnterWord(word, LENGTH_DATE, 4);
+	}
+	else {
+		if (!(	((int)word[0] >= 48		&& (int)word[0] <= 57) &&
+				((int)word[1] >= 48		&& (int)word[1] <= 57) &&
+				((int)word[3] >= 48		&& (int)word[3] <= 57) &&
+				((int)word[4] >= 48		&& (int)word[4] <= 57) &&
+				((int)word[6] >= 48		&& (int)word[6] <= 57) &&
+				((int)word[7] >= 48		&& (int)word[7] <= 57) &&
+				((int)word[8] >= 48		&& (int)word[8] <= 57) &&
+				((int)word[9] >= 48		&& (int)word[9] <= 57) &&
+				((word[2] == '.' && word[5] == '.') || (word[2] == ':' && word[5] == ':') || (word[2] == ' ' && word[5] == ' '))
+			)) {
+			printf("Ошибка ввода даты. Повторите попытку: ");
+			ErrorEnterWord(word, LENGTH_DATE, 4);
+		}
+	}
+
+}
+
+void CheckPhone(char *word) {
+	int length		= StringLength(word),
+		brace_left	= 0,
+		brace_right = 0;
+
+	if (!(word[0] == '+' || ((int)word[0] >= 48 && (int)word[0] <= 57))) {
+		printf("Ошибка ввода номера телефона. Повторите попытку: ");
+		ErrorEnterWord(word, MAX_LENGTH_PHONE, 5);
+	}
+	for (int i = 1; i < length; i++) {
+		if (word[i] == '(') brace_left++;
+		else if(word[i] == ')')brace_right++;
+		else if (!(((int)word[i] >= 48 && (int)word[i] <= 57) || word[i] == '(' || word[i] == ')' || word[i] == ' ' || word[i] == '\n' || word[i] == '\0')) {
+			printf("Ошибка ввода номера телефона. Повторите попытку: ");
+			ErrorEnterWord(word, MAX_LENGTH_PHONE, 5);
+			break;
+		}
+
+		if (brace_left > 1 || brace_right > 1) {
+			printf("Ошибка ввода номера телефона. Повторите попытку: ");
+			ErrorEnterWord(word, MAX_LENGTH_PHONE, 5);
+			break;
+		}
+	}
+
+}
+
+void CheckOfficeGIBDD(char *word) {
+	int length = StringLength(word);
+
+	for (int i = 0; i < length; i++) {
+		if (!(((int)word[i] >= 65 && (int)word[i] <= 90) ||
+			((int)word[i] >= 97 && (int)word[i] <= 122) ||
+			((int)word[i] >= -64 && (int)word[i] <= -1) ||
+			((int)word[0] >= 48 && (int)word[0] <= 57) ||
+			(word[i] == '\n' || word[i] == '\0' || word[i] == ' ')
+			)) {
+			printf("Ошибка ввода отделения регистрации ГИБДД. Повторите попытку: ");
+			ErrorEnterWord(word, MAX_LENGTH_OFFICEGIBDD, 6);
 			break;
 		}
 	}
@@ -241,14 +357,28 @@ void ErrorEnterWord(char* word, int size ,int code_arg) {
 	}
 	fgets(word, size, stdin);
 
+	NumberSwitch(word, code_arg);
+}
+
+void NumberSwitch(char *word, int code_arg) {
 	switch (code_arg) {
 	case 1:
 		CheckName(word);
 		break;
-	case 2:break;
-	case 3:break;
-	case 4:break;
-	case 5:break;
-	case 6:break;
+	case 2:
+		CheckNumberOrChar(word, 2);
+		break;
+	case 3:
+		CheckNumberOrChar(word, 3);
+		break;
+	case 4:
+		CheckDate(word);
+		break;
+	case 5:
+		CheckPhone(word);
+		break;
+	case 6:
+		CheckOfficeGIBDD(word);
+		break;
 	}
 }
