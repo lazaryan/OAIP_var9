@@ -1,55 +1,55 @@
 #define _CRT_SECURE_NO_WARNINGS 
 
 /*Константы длины*/
-#define	MAX_LENGTH_NAME								35
-#define	MAX_LENGTH_NUMBER_CUR						20
+#define	MAX_LENGTH_NAME					35
+#define	MAX_LENGTH_NUMBER_CUR				20
 #define	MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION	40
-#define LENGTH_DATE									12
-#define	MAX_LENGTH_PHONE							25
-#define	MAX_LENGTH_OFFICEGIBDD						60
+#define LENGTH_DATE					12
+#define	MAX_LENGTH_PHONE				25
+#define	MAX_LENGTH_OFFICEGIBDD				60
 
 /*Константы для проверок ввода*/
-#define MAX_LENGTH_STRING				MAX_LENGTH_NAME+							\
-										MAX_LENGTH_NUMBER_CUR+						\
-										MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION+	\
-										LENGTH_DATE+								\
-										MAX_LENGTH_PHONE+							\
-										MAX_LENGTH_OFFICEGIBDD
+#define MAX_LENGTH_STRING				MAX_LENGTH_NAME+				\
+							MAX_LENGTH_NUMBER_CUR+				\
+							MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION+	\
+							LENGTH_DATE+					\
+							MAX_LENGTH_PHONE+				\
+							MAX_LENGTH_OFFICEGIBDD
 
-#define CODE_ENGLESH_SYMBOL_SMALL		((int)word[i] >= 65		&& (int)word[i] <= 90)
-#define CODE_ENGLESH_SYMBOL_BIGG		((int)word[i] >= 97		&& (int)word[i] <= 122)
-#define CODE_RUSSIAN_SYMBOL				((int)word[i] >= -64	&& (int)word[i] <= -1)
+#define CODE_ENGLESH_SYMBOL_SMALL			((int)word[i] >= 65		&& (int)word[i] <= 90)
+#define CODE_ENGLESH_SYMBOL_BIGG			((int)word[i] >= 97		&& (int)word[i] <= 122)
+#define CODE_RUSSIAN_SYMBOL				((int)word[i] >= -64		&& (int)word[i] <= -1)
 #define CODE_NUMBER_SYMBOL				((int)word[i] >= 48		&& (int)word[i] <= 57)
 #define FINISH_SYMBOL					word[i] == '\n' || word[i] == '\0'
 
 #define CODE_ENGLESH_SYMBOL				CODE_ENGLESH_SYMBOL_SMALL	||\
-										CODE_ENGLESH_SYMBOL_BIGG
+							CODE_ENGLESH_SYMBOL_BIGG
 
-#define CHECK_NAME						CODE_ENGLESH_SYMBOL ||\
-										CODE_RUSSIAN_SYMBOL	||\
-										FINISH_SYMBOL
+#define CHECK_NAME					CODE_ENGLESH_SYMBOL 		||\
+							CODE_RUSSIAN_SYMBOL		||\
+							FINISH_SYMBOL
 
-#define CODE_NUMBER_OR_SYMBOL			CODE_ENGLESH_SYMBOL ||\
-										CODE_NUMBER_SYMBOL	||\
-										FINISH_SYMBOL
+#define CODE_NUMBER_OR_SYMBOL				CODE_ENGLESH_SYMBOL 		||\
+							CODE_NUMBER_SYMBOL		||\
+							FINISH_SYMBOL
 
-#define CHECK_CODE_DATE					(((int)word[0] >= 48	&& (int)word[0] <= 57) &&\
-										((int)word[1] >= 48		&& (int)word[1] <= 57) &&\
-										((int)word[3] >= 48		&& (int)word[3] <= 57) &&\
-										((int)word[4] >= 48		&& (int)word[4] <= 57) &&\
-										((int)word[6] >= 48		&& (int)word[6] <= 57) &&\
-										((int)word[7] >= 48		&& (int)word[7] <= 57) &&\
-										((int)word[8] >= 48		&& (int)word[8] <= 57) &&\
-										((int)word[9] >= 48		&& (int)word[9] <= 57) &&\
-										((word[2] 	== '.'		&& word[5] == '.')	||\
-										(word[2] 	== ':'		&& word[5] == ':')	||\
-										(word[2] 	== ' '		&& word[5] == ' ')))
+#define CHECK_CODE_DATE					(((int)word[0] >= 48		&& (int)word[0] <= 57) 	&&\
+							((int)word[1] >= 48		&& (int)word[1] <= 57) 	&&\
+							((int)word[3] >= 48		&& (int)word[3] <= 57) 	&&\
+							((int)word[4] >= 48		&& (int)word[4] <= 57) 	&&\
+							((int)word[6] >= 48		&& (int)word[6] <= 57) 	&&\
+							((int)word[7] >= 48		&& (int)word[7] <= 57) 	&&\
+							((int)word[8] >= 48		&& (int)word[8] <= 57) 	&&\
+							((int)word[9] >= 48		&& (int)word[9] <= 57) 	&&\
+							((word[2] 	== '.'		&& word[5] == '.')	||\
+							(word[2] 	== ':'		&& word[5] == ':')	||\
+							(word[2] 	== ' '		&& word[5] == ' ')))
 
 #define CHECK_OFFICE_GIBDD				CODE_ENGLESH_SYMBOL_SMALL	||\
-										CODE_ENGLESH_SYMBOL_BIGG	||\
-										CODE_RUSSIAN_SYMBOL			||\
-										CODE_NUMBER_SYMBOL			||\
-										(FINISH_SYMBOL || word[i] == ' ')
+							CODE_ENGLESH_SYMBOL_BIGG	||\
+							CODE_RUSSIAN_SYMBOL		||\
+							CODE_NUMBER_SYMBOL		||\
+							(FINISH_SYMBOL || word[i] == ' ')
 
 /*библиотеки*/
 #include <stdio.h> 
@@ -58,47 +58,47 @@
 #include <locale>
 
 struct car {
-	char	name						[MAX_LENGTH_NAME];
-	char	NumberCur					[MAX_LENGTH_NUMBER_CUR];
-	char	NumberTechnicalCertificate	[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
-	char	date						[LENGTH_DATE];
-	char	phone						[MAX_LENGTH_PHONE];
-	char	OfficeGIBDD					[MAX_LENGTH_OFFICEGIBDD];
+	char	name					[MAX_LENGTH_NAME];
+	char	NumberCur				[MAX_LENGTH_NUMBER_CUR];
+	char	NumberTechnicalCertificate		[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
+	char	date					[LENGTH_DATE];
+	char	phone					[MAX_LENGTH_PHONE];
+	char	OfficeGIBDD				[MAX_LENGTH_OFFICEGIBDD];
 };
 
 /*функции*/
 
 /*общие*/
 void EnterNumberOrSymbol				(char *word, int max_length);
-void ChoiceFunction						(int request);
+void ChoiceFunction					(int request);
 void EnterOfficeGIBDD					(char *word);
-void EnterPhone							(char *word);
-void EnterName							(char *word);
-void EnterDate							(char *word);
-void FormStructText						();
-void FormRequest						();
-void FormStruct							();
+void EnterPhone						(char *word);
+void EnterName						(char *word);
+void EnterDate						(char *word);
+void FormStructText					();
+void FormRequest					();
+void FormStruct						();
 
-int StringLength						(char *StringText);
-int СhoiceRequest						(int max);
+int StringLength					(char *StringText);
+int СhoiceRequest					(int max);
 
 /*1 запрос*/
-void EnterWord							(char *word, int max_length, int *length);
-void EntryFile							(FILE *file, struct car Auto);
-void EnterStruct						(struct car *Auto);
-void EnterStructs						();
+void EnterWord						(char *word, int max_length, int *length);
+void EntryFile						(FILE *file, struct car Auto);
+void EnterStruct					(struct car *Auto);
+void EnterStructs					();
 
 int EnterCountStructs					();
 
 /*2 запрос*/
-void PassingFile						(int request, char *search_text);
-void StringCopy							(char *new_text, char *text);
-void SearchText							();
+void PassingFile					(int request, char *search_text);
+void StringCopy						(char *new_text, char *text);
+void SearchText						();
 
-int SearchPunct							(char *text_file, int request, char *search_text);
-int PositionTub							(char *word);
+int SearchPunct						(char *text_file, int request, char *search_text);
+int PositionTub						(char *word);
 /*3 запрос*/
-void OutputStruct						();
+void OutputStruct					();
 
 /*4 запрос*/
 void SortingFile();
@@ -136,7 +136,7 @@ void FormRequest() {
 }
 
 int СhoiceRequest(int max) {
-	int		request = 0;
+	int	request = 0;
 	bool	error	= true;
 
 	do {
@@ -216,7 +216,7 @@ void EntryFile(FILE *file, struct car Auto) {
 }
 
 int EnterCountStructs() {
-	int		count = 0;
+	int	count = 0;
 	bool	error = true;
 
 	do {
@@ -304,9 +304,9 @@ void EnterDate(char *word) {
 }
 
 void EnterPhone(char *word) {
-	int length		= 0,
+	int 	length		= 0,
 		brace_left	= 0,
-		brace_right = 0;
+		brace_right 	= 0;
 
 	EnterWord(word, MAX_LENGTH_PHONE, &length);
 	if (!(word[0] == '+' || ((int)word[0] >= 48 && (int)word[0] <= 57))) {
@@ -316,7 +316,7 @@ void EnterPhone(char *word) {
 	for (int i = 1; i < length; i++) {
 		if (word[i] == '(') brace_left++;
 		else if (word[i] == ')')brace_right++;
-		else if (!	(CODE_NUMBER_SYMBOL || word[i] == '(' || word[i] == ')' || word[i] == ' ' || FINISH_SYMBOL) || 
+		else if (!(CODE_NUMBER_SYMBOL || word[i] == '(' || word[i] == ')' || word[i] == ' ' || FINISH_SYMBOL) || 
 					(word[i] == ')' && brace_left == 0)) {
 			printf("\tОшибка ввода номера телефона. Повторите попытку: ");
 			EnterPhone(word);
@@ -446,10 +446,10 @@ void PassingFile(int request , char *search_text) {
 		else exit(0);
 	}
 	else {
-		char	text_file		[MAX_LENGTH_STRING]	= "",
-				buf_text_file	[MAX_LENGTH_STRING]	= "";
-		int		coincidence							= 0,
-				count								= 0;
+		char	text_file	[MAX_LENGTH_STRING]	= "",
+			buf_text_file	[MAX_LENGTH_STRING]	= "";
+		int	coincidence				= 0,
+			count					= 0;
 
 		while (fgets(text_file, MAX_LENGTH_STRING + 10, StructFile) != NULL) {
 			text_file[StringLength(text_file) - 1] = '\0';
@@ -462,7 +462,6 @@ void PassingFile(int request , char *search_text) {
 				count++;
 			}
 		}
-
 		if (!count) printf("Совпадений не найдено!\n");
 	}
 }
@@ -477,9 +476,9 @@ void StringCopy(char *new_text, char *text) {
 }
 
 int SearchPunct(char *text_file, int request , char *search_text) {
-	int length			= StringLength(text_file),
+	int 	length		= StringLength(text_file),
 		position_tub	= 0,
-		coincidence		= 1;
+		coincidence	= 1;
 
 	for (int i = 0; i < (request - 1); i++) {
 		position_tub = PositionTub(text_file);
