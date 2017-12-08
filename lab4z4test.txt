@@ -1,0 +1,62 @@
+/*4 запрос*/
+void SortingFile() {
+	FILE *StructFile = fopen("StructFile.txt", "r");
+	if (StructFile == NULL) {
+		printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
+		printf("Ввод: ");
+		int request = СhoiceRequest(2);
+		if (request == 1) {
+			FormRequest();
+			request = СhoiceRequest(5);
+			ChoiceFunction(request);
+		}
+		else exit(0);
+	}
+	else {
+		AddStructs(StructFile);
+		printf("Будет еще запрос?(1-да; 2-нет)\n");
+		printf("Ввод: ");
+		int request = СhoiceRequest(2);
+		if (request == 1) {
+			FormRequest();
+			printf("Ввод: ");
+			request = СhoiceRequest(5);
+			ChoiceFunction(request);
+		}
+		else exit(0);
+	}
+	fclose(StructFile);
+}
+
+void AddStructs(FILE *StructFile) {
+	char	text_file[MAX_LENGTH_STRING] = "";
+	int		count	= 0,
+			k =0;
+	char c = ' ';
+
+	while (fgets(text_file, MAX_LENGTH_STRING + 10, StructFile) != NULL) count++;
+
+	struct car *Auto = (struct car *)malloc(sizeof(struct car *) * count);
+	for (int j = 0; j < count; j++)
+		for (int i = 0; i < MAX_LENGTH_NAME; i++)
+			Auto[j].name[i] = '\0';
+
+
+	rewind(StructFile);
+
+	for (int i = 0; i < count; i++) {
+		fgets(text_file, MAX_LENGTH_STRING + 10, StructFile);
+		for (int j = 0; j < PositionTub(text_file); j++)
+			Auto[i].name[j] = text_file[j];
+	}
+	struct car tm;
+	for (int i = 0; i < count; i++) {
+		for (int j = 0; j < count - i - 1; j++) {
+			if ((int)Auto[j].name[i] > (int)Auto[j + 1].name[i]) {
+				tm = Auto[j];
+				Auto[j] = Auto[j + 1];
+				Auto[j + 1] = tm;
+			}
+		}
+	}
+}
