@@ -61,6 +61,9 @@
 								CODE_NUMBER_SYMBOL				||	\
 								FINISH_SYMBOL  
 
+#define MIN_DATE_YEAR						1900
+#define MAX_DATE_YEAR						2017
+
 #define CHECK_CODE_DATE						(((int)word[0]>= 48				&& (int)word[0] <= 57)	 &&\
 								((int)word[1] >= 48				&& (int)word[1] <= 57)	 &&\
 								((int)word[3] >= 48				&& (int)word[3] <= 57)	 &&\
@@ -74,8 +77,8 @@
 								(word[2] == ' '					&& word[5] == ' '))	 &&\
 								((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 12) && \
 								((((int)word[3] - (int)('0')) * 10 + ((int)word[4] - (int)('0'))) <= 12) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > 1900) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < 2017))
+								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > MIN_DATE_YEAR) && \
+								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < MAX_DATE_YEAR))
 
 #define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL			||	\
 								CODE_ENGLESH_SYMBOL_BIGG			||	\
