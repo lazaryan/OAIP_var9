@@ -11,19 +11,19 @@
 				((int)word[i] >= 97	&& (int)word[i] <= 122) ||\
 				((int)word[i] >= -64	&& (int)word[i] <= -1)) 
 
-#define MAX_LENGTH 255
+#define MAX_LENGTH 		255
 
 #include <stdio.h> 
 #include <conio.h>
 #include <locale>
 
-void CheckWord		(char *word);
-void EnterWord		(char *word);
-void ParsingString	(char *StringText);
-void GetWord		(char *StringText, int PositionFinishSymbol, int finish);
+void CheckWord			(char *word);
+void EnterWord			(char *word);
+void ParsingString		(char *StringText);
+void GetWord			(char *StringText, int PositionFinishSymbol, int finish);
 
-int StringLength	(char *StringText);
-int SearchSymbol	(char *StringText , int NumberSymbol);
+int StringLength		(char *StringText);
+int SearchSymbol		(char *StringText , int NumberSymbol);
 
 void main() {
 	system("chcp 1251");
