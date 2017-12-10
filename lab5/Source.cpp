@@ -200,7 +200,7 @@ void ChoiceFunction(int request) {
 		SortingFile();
 		break;
 	case 5:
-		exit(0);
+		exit(1);
 	}
 }
 
@@ -234,7 +234,7 @@ void RepeatRequest(int exist_file) {
 	exist_file ? printf("Будет еще запрос?(1-да; 2-нет)\n") : printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
 	printf("Ввод: ");
 	int request = СhoiceRequest(2);
-	request == 1 ? EnterRequest() : exit(0);
+	request == 1 ? EnterRequest() : exit(1);
 }
 
 void EnterRequest() {
