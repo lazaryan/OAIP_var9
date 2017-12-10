@@ -86,6 +86,7 @@
 								CODE_NUMBER_SYMBOL				||	\
 								(FINISH_SYMBOL					|| word[i] == ' ')
 
+/*наша структура*/
 struct car {
 	char	name						[MAX_LENGTH_NAME];
 	char	NumberCur					[MAX_LENGTH_NUMBER_CUR];
