@@ -1,10 +1,28 @@
-﻿#define _CRT_SECURE_NO_WARNINGS 
+﻿/*
+Лазарян Сергей Каренович
+Лабораторная работа №5
+Вариант 9
+Задание:Написать программу, которая записывает с клавиатуры в файл структуру
+согласно выданному варианту задания. В качестве разделителя полей структуры
+использовать символ табуляции. В программе реализовать:
+а) дополнение существующего массива структур новыми структурами;
+б) поиск структуры с заданным значением выбранного элемента;
+в) вывод на экран содержимого массива структур;
+г) упорядочение массива структур по заданному полю (элементу), например
+государство по численности.
+Вариант задания: «Владелец автомобиля»: имя, номер автомобиля, номер техпаспорта, дата
+рождения, телефон, отделение регистрации ГИБДД.
+*/
+
+#define _CRT_SECURE_NO_WARNINGS 
 
 /*библиотеки*/
 #include <stdio.h> 
 #include <stdlib.h>
 #include <conio.h>
 #include <locale>
+
+/*Константы и участки кода*/
 
 /*Константы длины*/
 #define	MAX_LENGTH_NAME						35
@@ -14,52 +32,56 @@
 #define	MAX_LENGTH_PHONE					25
 #define	MAX_LENGTH_OFFICEGIBDD					60
 
+/*Путь к файлу для работы*/
+#define WAY_FILE						"StructFile.txt"
+
 /*Константы для проверок ввода*/
 #define MAX_LENGTH_STRING					MAX_LENGTH_NAME					+	\
 								MAX_LENGTH_NUMBER_CUR				+	\
 								MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION	+	\
 								LENGTH_DATE					+	\
 								MAX_LENGTH_PHONE				+	\
-								MAX_LENGTH_OFFICEGIBDD
+								MAX_LENGTH_OFFICEGIBDD				+	\
+								10
 
-#define CODE_ENGLESH_SYMBOL_SMALL				((int)word[i] >= 65			&& (int)word[i] <= 90)
-#define CODE_ENGLESH_SYMBOL_BIGG				((int)word[i] >= 97			&& (int)word[i] <= 122)
-#define CODE_RUSSIAN_SYMBOL					((int)word[i] >= -64			&& (int)word[i] <= -1)
-#define CODE_NUMBER_SYMBOL					((int)word[i] >= 48			&& (int)word[i] <= 57)
-#define FINISH_SYMBOL						word[i] == '\n'				|| word[i] == '\0'
+#define CODE_ENGLESH_SYMBOL_SMALL				((int)word[i] >= 65				&& (int)word[i] <= 90)
+#define CODE_ENGLESH_SYMBOL_BIGG				((int)word[i] >= 97				&& (int)word[i] <= 122)
+#define CODE_RUSSIAN_SYMBOL					((int)word[i] >= -64				&& (int)word[i] <= -1)
+#define CODE_NUMBER_SYMBOL					((int)word[i] >= 48				&& (int)word[i] <= 57)
+#define FINISH_SYMBOL						word[i] == '\n'					|| word[i] == '\0'
 
-#define CODE_ENGLESH_SYMBOL					CODE_ENGLESH_SYMBOL_SMALL		||\
+#define CODE_ENGLESH_SYMBOL					CODE_ENGLESH_SYMBOL_SMALL			||	\
 								CODE_ENGLESH_SYMBOL_BIGG
 
-#define CHECK_NAME						CODE_ENGLESH_SYMBOL			||\
-								CODE_RUSSIAN_SYMBOL			||\
+#define CHECK_NAME						CODE_ENGLESH_SYMBOL				||	\
+								CODE_RUSSIAN_SYMBOL				||	\
 								FINISH_SYMBOL
 
-#define CODE_NUMBER_OR_SYMBOL					CODE_ENGLESH_SYMBOL			||\
-								CODE_NUMBER_SYMBOL			||\
-								FINISH_SYMBOL	
+#define CODE_NUMBER_OR_SYMBOL					CODE_ENGLESH_SYMBOL				||	\
+								CODE_NUMBER_SYMBOL				||	\
+								FINISH_SYMBOL  
 
-#define CHECK_CODE_DATE						(((int)word[0]>= 48			&& (int)word[0] <= 57)	&&\
-								((int)word[1] >= 48			&& (int)word[1] <= 57)	&&\
-								((int)word[3] >= 48			&& (int)word[3] <= 57)	&&\
-								((int)word[4] >= 48			&& (int)word[4] <= 57)	&&\
-								((int)word[6] >= 48			&& (int)word[6] <= 57)	&&\
-								((int)word[7] >= 48			&& (int)word[7] <= 57)	&&\
-								((int)word[8] >= 48			&& (int)word[8] <= 57)	&&\
-								((int)word[9] >= 48			&& (int)word[9] <= 57)	&&\
-								((word[2] == '.'			&& word[5] == '.')	||\
-								(word[2] == ':'				&& word[5] == ':')	||\
-								(word[2] == ' '				&& word[5] == ' '))	&&\
+#define CHECK_CODE_DATE						(((int)word[0]>= 48				&& (int)word[0] <= 57)	 &&\
+								((int)word[1] >= 48				&& (int)word[1] <= 57)	 &&\
+								((int)word[3] >= 48				&& (int)word[3] <= 57)	 &&\
+								((int)word[4] >= 48				&& (int)word[4] <= 57)	 &&\
+								((int)word[6] >= 48				&& (int)word[6] <= 57)	 &&\
+								((int)word[7] >= 48				&& (int)word[7] <= 57)	 &&\
+								((int)word[8] >= 48				&& (int)word[8] <= 57)	 &&\
+								((int)word[9] >= 48				&& (int)word[9] <= 57)	 &&\
+								((word[2] == '.'				&& word[5] == '.')	 ||\
+								(word[2] == ':'					&& word[5] == ':')	 ||\
+								(word[2] == ' '					&& word[5] == ' '))	 &&\
 								((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 12) && \
 								((((int)word[3] - (int)('0')) * 10 + ((int)word[4] - (int)('0'))) <= 12) && \
 								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > 1900) && \
 								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < 2017))
 
-#define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL		||\
-								CODE_ENGLESH_SYMBOL_BIGG		||\
-								CODE_RUSSIAN_SYMBOL			||\
-								CODE_NUMBER_SYMBOL			||\
-								(FINISH_SYMBOL				|| word[i] == ' ')
+#define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL			||	\
+								CODE_ENGLESH_SYMBOL_BIGG			||	\
+								CODE_RUSSIAN_SYMBOL				||	\
+								CODE_NUMBER_SYMBOL				||	\
+								(FINISH_SYMBOL					|| word[i] == ' ')
 
 struct car {
 	char	name						[MAX_LENGTH_NAME];
@@ -73,13 +95,16 @@ struct car {
 /*функции*/
 
 /*общие*/
+void EntryFile							(FILE *file, struct car Auto);
 void EnterNumberOrSymbol					(char *word, int max_length);
+void RepeatRequest						(int exist_file);
 void ChoiceFunction						(int request);
 void EnterOfficeGIBDD						(char *word);
 void EnterPhone							(char *word);
 void EnterName							(char *word);
 void EnterDate							(char *word);
 void FormStructText						();
+void EnterRequest						();
 void FormRequest						();
 void FormStruct							();
 
@@ -89,7 +114,6 @@ int СhoiceRequest						(int max);
 
 /*1 запрос*/
 void EnterWord							(char *word, int max_length, int *length);
-void EntryFile							(FILE *file, struct car Auto);
 void EnterStruct						(struct car *Auto);
 void EnterStructs						();
 
@@ -101,33 +125,28 @@ void StringCopy							(char *new_text, char *text);
 void SearchText							();
 
 int SearchPunct							(char *text_file, int request, char *search_text);
+
 /*3 запрос*/
 void OutputStruct						();
 
 /*4 запрос*/
+void SwapStructs						(struct car &Auto1, struct car &Auto2);
 void AddStruct							(struct car *Auto, char *text);
-void AddStructs							(FILE *StructFile);
 void ClearStruct						(struct car *Auto);
-void SortingStruct						(struct car *Auto);
+void AddStructs							(FILE *StructFile);
 void SortingFile						();
 
 /*код*/
-int main() {
+void main() {
 	system("chcp 1251");
 	system("cls");
 
 	int request = 0;
 
 	printf("Выбирете тип запроса:\n");
-	FormRequest();
+	EnterRequest();
 
-	printf("Ввод: ");
-	request = СhoiceRequest(5);
-	ChoiceFunction(request);
-
-	
-	getchar();
-	return 1;
+	_getch();
 }
 
 int StringLength(char *StringText) {
@@ -191,9 +210,10 @@ void EnterStructs() {
 	
 	FormStruct();
 
-	FILE *StructFile = fopen("StructFile.txt", "a");
+	FILE *StructFile = fopen(WAY_FILE, "a");
 	if (StructFile == NULL) {
-		StructFile = fopen("StructFile.txt", "w");
+		fclose(StructFile);
+		StructFile = fopen(WAY_FILE, "w");
 	}
 
 	for (int i = 0; i < count; i++) {
@@ -201,18 +221,23 @@ void EnterStructs() {
 		EnterStruct(&Auto[i]);
 		EntryFile(StructFile, Auto[i]);
 	}
-	fclose(StructFile);
 
-	printf("Будет еще запрос?(1-да; 2-нет)\n");
+	fclose(StructFile);
+	RepeatRequest(1);
+}
+
+void RepeatRequest(int exist_file) {
+	exist_file ? printf("Будет еще запрос?(1-да; 2-нет)\n") : printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
 	printf("Ввод: ");
 	int request = СhoiceRequest(2);
-	if (request == 1) {
-		FormRequest();
-		printf("Ввод: ");
-		request = СhoiceRequest(5);
-		ChoiceFunction(request);
-	}
-	else exit(0);
+	request == 1 ? EnterRequest() : exit(0);
+}
+
+void EnterRequest() {
+	FormRequest();
+	printf("Ввод: ");
+	int request = СhoiceRequest(5);
+	ChoiceFunction(request);
 }
 
 void EntryFile(FILE *file, struct car Auto) {
@@ -313,7 +338,7 @@ void EnterDate(char *word) {
 }
 
 void EnterPhone(char *word) {
-	int 	length		= 0,
+	int	length		= 0,
 		brace_left	= 0,
 		brace_right	= 0;
 
@@ -365,38 +390,6 @@ void EnterWord(char *word, int max_length, int *length) {
 
 }
 
-/*3 запрос*/
-void OutputStruct() {
-	FILE *StructFile = fopen("StructFile.txt", "r");
-	if (StructFile == NULL) {
-		printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
-		printf("Ввод: ");
-		int request = СhoiceRequest(2);
-		if (request == 1) {
-			FormRequest();
-			request = СhoiceRequest(5);
-			ChoiceFunction(request);
-		}
-		else exit(0);
-	}
-	else {
-		char text_file[MAX_LENGTH_STRING] = "";
-		while (fgets(text_file, MAX_LENGTH_STRING + 10, StructFile) != NULL)
-			printf("%s\n", text_file);
-		printf("Будет еще запрос?(1-да; 2-нет)\n");
-		printf("Ввод: ");
-		int request = СhoiceRequest(2);
-		if (request == 1) {
-			FormRequest();
-			printf("Ввод: ");
-			request = СhoiceRequest(5);
-			ChoiceFunction(request);
-		}
-		else exit(0);
-	}
-	fclose(StructFile);
-}
-
 /*2 запрос*/
 void SearchText() {
 	printf("Выберете критерий поиска:\n");
@@ -429,38 +422,22 @@ void SearchText() {
 	}
 
 	PassingFile(request , search_text);
-	printf("Будет еще запрос?(1-да; 2-нет)\n");
-	printf("Ввод: ");
-	request = СhoiceRequest(2);
-	if (request == 1) {
-		FormRequest();
-		printf("Ввод: ");
-		request = СhoiceRequest(5);
-		ChoiceFunction(request);
-	}
-	else exit(0);
+	RepeatRequest(1);
 }
 
 void PassingFile(int request , char *search_text) {
-	FILE *StructFile = fopen("StructFile.txt", "r");
+	FILE *StructFile = fopen(WAY_FILE, "r");
 	if (StructFile == NULL) {
-		printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
-		printf("Ввод: ");
-		int request = СhoiceRequest(2);
-		if (request == 1) {
-			FormRequest();
-			request = СhoiceRequest(5);
-			ChoiceFunction(request);
-		}
-		else exit(0);
+		fclose(StructFile);
+		RepeatRequest(0);
 	}
 	else {
-		char		text_file	[MAX_LENGTH_STRING]	= "",
-				buf_text_file	[MAX_LENGTH_STRING]	= "";
-		int		coincidence				= 0,
-				count					= 0;
+		char	text_file	[MAX_LENGTH_STRING]	= "",
+			buf_text_file	[MAX_LENGTH_STRING]	= "";
+		int	coincidence				= 0,
+			count					= 0;
 
-		while (fgets(text_file, MAX_LENGTH_STRING + 10, StructFile) != NULL) {
+		while (fgets(text_file, MAX_LENGTH_STRING, StructFile) != NULL) {
 			text_file[StringLength(text_file) - 1] = '\0';
 
 			StringCopy(buf_text_file , text_file);
@@ -474,6 +451,8 @@ void PassingFile(int request , char *search_text) {
 
 		if (!count) printf("Совпадений не найдено!\n");
 	}
+
+	fclose(StructFile);
 }
 
 void StringCopy(char *new_text, char *text) {
@@ -486,9 +465,9 @@ void StringCopy(char *new_text, char *text) {
 }
 
 int SearchPunct(char *text_file, int request , char *search_text) {
-	int 	length			= StringLength(text_file),
-		position_tub		= 0,
-		coincidence		= 1;
+	int	length		= StringLength(text_file),
+		position_tub	= 0,
+		coincidence	= 1;
 
 	for (int i = 0; i < (request - 1); i++) {
 		position_tub = PositionTub(text_file);
@@ -500,7 +479,8 @@ int SearchPunct(char *text_file, int request , char *search_text) {
 			break;
 		}
 
-		if (text_file[i] != search_text[i] || ((search_text[i] == '\n' || search_text[i] == '\0') && i < StringLength(search_text))) {
+		if (text_file[i] != search_text[i] || 
+			((search_text[i] == '\n'   || search_text[i] == '\0') && i < StringLength(search_text))) {
 			coincidence = 0;
 			break;
 		}
@@ -519,50 +499,80 @@ int PositionTub(char *word) {
 	return NULL;
 }
 
+/*3 запрос*/
+void OutputStruct() {
+	FILE *StructFile = fopen(WAY_FILE, "r");
+	if (StructFile == NULL) {
+		RepeatRequest(0);
+	}
+	else {
+		char text_file[MAX_LENGTH_STRING] = "";
+		while (fgets(text_file, MAX_LENGTH_STRING, StructFile) != NULL)
+			printf("%s\n", text_file);
+
+		fclose(StructFile);
+		RepeatRequest(1);
+	}
+}
+
 /*4 запрос*/
 void SortingFile() {
-	FILE *StructFile = fopen("StructFile.txt", "r");
+	FILE *StructFile = fopen(WAY_FILE, "r");
 	if (StructFile == NULL) {
-		printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
-		printf("Ввод: ");
-		int request = СhoiceRequest(2);
-		if (request == 1) {
-			FormRequest();
-			request = СhoiceRequest(5);
-			ChoiceFunction(request);
-		}
-		else exit(0);
+		fclose(StructFile);
+		RepeatRequest(0);
 	}
 	else {
 		AddStructs(StructFile);
-		printf("Будет еще запрос?(1-да; 2-нет)\n");
-		printf("Ввод: ");
-		int request = СhoiceRequest(2);
-		if (request == 1) {
-			FormRequest();
-			printf("Ввод: ");
-			request = СhoiceRequest(5);
-			ChoiceFunction(request);
-		}
-		else exit(0);
+		RepeatRequest(1);
 	}
-	fclose(StructFile);
 }
 
 void AddStructs(FILE *StructFile) {
-	char	text_file[MAX_LENGTH_STRING] = "";
-	int	count = 0;
+	char	text_file[MAX_LENGTH_STRING]	= "";
+	int	count				= 0,
+		max_length_name			= 0;
 
-	while (fgets(text_file, MAX_LENGTH_STRING + 10, StructFile) != NULL) count++;
+	while (fgets(text_file, MAX_LENGTH_STRING, StructFile) != NULL) count++;
 
 	struct car *Auto = (struct car *)malloc(sizeof(struct car *) * count);
 	rewind(StructFile);
 	
 	for (int i = 0; i < count; i++) {
-		fgets(text_file, MAX_LENGTH_STRING + 10, StructFile);
+		fgets(text_file, MAX_LENGTH_STRING, StructFile);
 		AddStruct(&Auto[i] , text_file);
 	}
-	SortingStruct(Auto);
+	for (int i = 0; i < count; i++)
+		if (StringLength(Auto[i].name) > max_length_name) max_length_name = StringLength(Auto[i].name);
+
+	for (int k = 0; k < max_length_name; k++)
+		for (int i = 0; i < count; i++) {
+			for (int j = i + 1; j < count; j++) {
+				if (Auto[i].name[k] && Auto[j].name[k]) {
+					if(!k)
+						if (((int)Auto[i].name[0] > (int)Auto[j].name[0]))
+							SwapStructs(Auto[i], Auto[j]);
+
+					if (((int)Auto[i].name[k] >(int)Auto[j].name[k]) && 
+						((int)Auto[i].name[k - 1] ==(int)Auto[j].name[k - 1]))
+							SwapStructs(Auto[i], Auto[j]);
+				}
+			}
+		}
+
+	fclose(StructFile);
+
+	StructFile = fopen(WAY_FILE, "w");
+	for (int i = 0; i < count; i++)
+		EntryFile(StructFile, Auto[i]);
+	fclose(StructFile);
+}
+
+void SwapStructs(struct car &Auto1, struct car &Auto2) {
+	struct car tmp;
+	tmp	= Auto2;
+	Auto2	= Auto1;
+	Auto1	= tmp;
 }
 
 void AddStruct(struct car *Auto , char *text) {
@@ -610,15 +620,11 @@ void ClearStruct(struct car *Auto) {
 	for (int i = 0; i < MAX_LENGTH_NUMBER_CUR; i++)
 		Auto->NumberCur[i]					= '\0';
 	for (int i = 0; i < MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION; i++)
-		Auto->NumberTechnicalCertificate[i] 			= '\0';
+		Auto->NumberTechnicalCertificate[i]			= '\0';
 	for (int i = 0; i < LENGTH_DATE; i++)
 		Auto->date[i]						= '\0';
 	for (int i = 0; i < MAX_LENGTH_PHONE; i++)
 		Auto->phone[i]						= '\0';
 	for (int i = 0; i < MAX_LENGTH_OFFICEGIBDD; i++)
 		Auto->OfficeGIBDD[i]					= '\0';
-}
-
-void SortingStruct(struct car *Auto) {
-
 }
