@@ -1,30 +1,30 @@
-п»ї/*
-Р›Р°Р·Р°СЂСЏРЅ РЎРµСЂРіРµР№ РљР°СЂРµРЅРѕРІРёС‡
-Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° в„–5
-Р’Р°СЂРёР°РЅС‚ 9
-Р—Р°РґР°РЅРёРµ:РќР°РїРёСЃР°С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ Р·Р°РїРёСЃС‹РІР°РµС‚ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ РІ С„Р°Р№Р» СЃС‚СЂСѓРєС‚СѓСЂСѓ
-СЃРѕРіР»Р°СЃРЅРѕ РІС‹РґР°РЅРЅРѕРјСѓ РІР°СЂРёР°РЅС‚Сѓ Р·Р°РґР°РЅРёСЏ. Р’ РєР°С‡РµСЃС‚РІРµ СЂР°Р·РґРµР»РёС‚РµР»СЏ РїРѕР»РµР№ СЃС‚СЂСѓРєС‚СѓСЂС‹
-РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃРёРјРІРѕР» С‚Р°Р±СѓР»СЏС†РёРё. Р’ РїСЂРѕРіСЂР°РјРјРµ СЂРµР°Р»РёР·РѕРІР°С‚СЊ:
-Р°) РґРѕРїРѕР»РЅРµРЅРёРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РјР°СЃСЃРёРІР° СЃС‚СЂСѓРєС‚СѓСЂ РЅРѕРІС‹РјРё СЃС‚СЂСѓРєС‚СѓСЂР°РјРё;
-Р±) РїРѕРёСЃРє СЃС‚СЂСѓРєС‚СѓСЂС‹ СЃ Р·Р°РґР°РЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°;
-РІ) РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РјР°СЃСЃРёРІР° СЃС‚СЂСѓРєС‚СѓСЂ;
-Рі) СѓРїРѕСЂСЏРґРѕС‡РµРЅРёРµ РјР°СЃСЃРёРІР° СЃС‚СЂСѓРєС‚СѓСЂ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РїРѕР»СЋ (СЌР»РµРјРµРЅС‚Сѓ), РЅР°РїСЂРёРјРµСЂ
-РіРѕСЃСѓРґР°СЂСЃС‚РІРѕ РїРѕ С‡РёСЃР»РµРЅРЅРѕСЃС‚Рё.
-Р’Р°СЂРёР°РЅС‚ Р·Р°РґР°РЅРёСЏ: В«Р’Р»Р°РґРµР»РµС† Р°РІС‚РѕРјРѕР±РёР»СЏВ»: РёРјСЏ, РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ, РЅРѕРјРµСЂ С‚РµС…РїР°СЃРїРѕСЂС‚Р°, РґР°С‚Р°
-СЂРѕР¶РґРµРЅРёСЏ, С‚РµР»РµС„РѕРЅ, РѕС‚РґРµР»РµРЅРёРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Р“РР‘Р”Р”.
+/*
+Лазарян Сергей Каренович
+Лабораторная работа №5
+Вариант 9
+Задание:Написать программу, которая записывает с клавиатуры в файл структуру
+согласно выданному варианту задания. В качестве разделителя полей структуры
+использовать символ табуляции. В программе реализовать:
+а) дополнение существующего массива структур новыми структурами;
+б) поиск структуры с заданным значением выбранного элемента;
+в) вывод на экран содержимого массива структур;
+г) упорядочение массива структур по заданному полю (элементу), например
+государство по численности.
+Вариант задания: «Владелец автомобиля»: имя, номер автомобиля, номер техпаспорта, дата
+рождения, телефон, отделение регистрации ГИБДД.
 */
 
 #define _CRT_SECURE_NO_WARNINGS 
 
-/*Р±РёР±Р»РёРѕС‚РµРєРё*/
+/*библиотеки*/
 #include <stdio.h> 
 #include <stdlib.h>
 #include <conio.h>
 #include <locale>
 
-/*РљРѕРЅСЃС‚Р°РЅС‚С‹ Рё СѓС‡Р°СЃС‚РєРё РєРѕРґР°*/
+/*Константы и участки кода*/
 
-/*РљРѕРЅСЃС‚Р°РЅС‚С‹ РґР»РёРЅС‹*/
+/*Константы длины*/
 #define	MAX_LENGTH_NAME						35
 #define	MAX_LENGTH_NUMBER_CUR					20
 #define	MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION		40
@@ -32,10 +32,10 @@
 #define	MAX_LENGTH_PHONE					25
 #define	MAX_LENGTH_OFFICEGIBDD					60
 
-/*РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РґР»СЏ СЂР°Р±РѕС‚С‹*/
+/*Путь к файлу для работы*/
 #define WAY_FILE						"StructFile.txt"
 
-/*РљРѕРЅСЃС‚Р°РЅС‚С‹ РґР»СЏ РїСЂРѕРІРµСЂРѕРє РІРІРѕРґР°*/
+/*Константы для проверок ввода*/
 #define MAX_LENGTH_STRING					MAX_LENGTH_NAME					+	\
 								MAX_LENGTH_NUMBER_CUR				+	\
 								MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION	+	\
@@ -50,19 +50,16 @@
 #define CODE_NUMBER_SYMBOL					((int)word[i] >= 48				&& (int)word[i] <= 57)
 #define FINISH_SYMBOL						word[i] == '\n'					|| word[i] == '\0'
 
-#define CODE_ENGLESH_SYMBOL					CODE_ENGLESH_SYMBOL_SMALL			||	\
+#define CODE_ENGLESH_SYMBOL					CODE_ENGLESH_SYMBOL_SMALL			||\
 								CODE_ENGLESH_SYMBOL_BIGG
 
-#define CHECK_NAME						CODE_ENGLESH_SYMBOL				||	\
-								CODE_RUSSIAN_SYMBOL				||	\
+#define CHECK_NAME						CODE_ENGLESH_SYMBOL				||\
+								CODE_RUSSIAN_SYMBOL				||\
 								FINISH_SYMBOL
 
-#define CODE_NUMBER_OR_SYMBOL					CODE_ENGLESH_SYMBOL				||	\
-								CODE_NUMBER_SYMBOL				||	\
+#define CODE_NUMBER_OR_SYMBOL					CODE_ENGLESH_SYMBOL				||\
+								CODE_NUMBER_SYMBOL				||\
 								FINISH_SYMBOL  
-
-#define MIN_DATE_YEAR						1900
-#define MAX_DATE_YEAR						2017
 
 #define CHECK_CODE_DATE						(((int)word[0]>= 48				&& (int)word[0] <= 57)	 &&\
 								((int)word[1] >= 48				&& (int)word[1] <= 57)	 &&\
@@ -75,79 +72,78 @@
 								((word[2] == '.'				&& word[5] == '.')	 ||\
 								(word[2] == ':'					&& word[5] == ':')	 ||\
 								(word[2] == ' '					&& word[5] == ' '))	 &&\
-								((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 12) && \
+								((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 31) && \
 								((((int)word[3] - (int)('0')) * 10 + ((int)word[4] - (int)('0'))) <= 12) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > MIN_DATE_YEAR) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < MAX_DATE_YEAR))
+								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > 1900) && \
+								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < 2017))
 
-#define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL			||	\
-								CODE_ENGLESH_SYMBOL_BIGG			||	\
-								CODE_RUSSIAN_SYMBOL				||	\
-								CODE_NUMBER_SYMBOL				||	\
+#define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL			||\
+								CODE_ENGLESH_SYMBOL_BIGG			||\
+								CODE_RUSSIAN_SYMBOL				||\
+								CODE_NUMBER_SYMBOL				||\
 								(FINISH_SYMBOL					|| word[i] == ' ')
 
-/*РЅР°С€Р° СЃС‚СЂСѓРєС‚СѓСЂР°*/
 struct car {
-	char	name						[MAX_LENGTH_NAME];
-	char	NumberCur					[MAX_LENGTH_NUMBER_CUR];
-	char	NumberTechnicalCertificate			[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
-	char	date						[LENGTH_DATE];
-	char	phone						[MAX_LENGTH_PHONE];
-	char	OfficeGIBDD					[MAX_LENGTH_OFFICEGIBDD];
+	char	name[MAX_LENGTH_NAME];
+	char	NumberCur[MAX_LENGTH_NUMBER_CUR];
+	char	NumberTechnicalCertificate[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
+	char	date[LENGTH_DATE];
+	char	phone[MAX_LENGTH_PHONE];
+	char	OfficeGIBDD[MAX_LENGTH_OFFICEGIBDD];
 };
 
-/*С„СѓРЅРєС†РёРё*/
+/*функции*/
 
-/*РѕР±С‰РёРµ*/
-void EntryFile							(FILE *file, struct car Auto);
-void EnterNumberOrSymbol					(char *word, int max_length);
-void RepeatRequest						(int exist_file);
-void ChoiceFunction						(int request);
-void EnterOfficeGIBDD						(char *word);
-void EnterPhone							(char *word);
-void EnterName							(char *word);
-void EnterDate							(char *word);
-void FormStructText						();
-void EnterRequest						();
-void FormRequest						();
-void FormStruct							();
+/*общие*/
+void EntryFile(FILE *file, struct car Auto);
+void EnterNumberOrSymbol(char *word, int max_length);
+void RepeatRequest(int exist_file);
+void ChoiceFunction(int request);
+void EnterOfficeGIBDD(char *word);
+void EnterPhone(char *word);
+void EnterName(char *word);
+void EnterDate(char *word);
+void FormStructText();
+void EnterRequest();
+void FormRequest();
+void FormStruct();
 
-int StringLength						(char *StringText);
-int PositionTub							(char *word);
-int РЎhoiceRequest						(int max);
+int StringLength(char *StringText);
+int PositionTub(char *word);
+int СhoiceRequest(int max);
 
-/*1 Р·Р°РїСЂРѕСЃ*/
-void EnterWord							(char *word, int max_length, int *length);
-void EnterStruct						(struct car *Auto);
-void EnterStructs						();
+/*1 запрос*/
+void EnterWord(char *word, int max_length, int *length);
+void EnterStruct(struct car *Auto);
+void EnterStructs();
 
-int EnterCountStructs						();
+int EnterCountStructs();
 
-/*2 Р·Р°РїСЂРѕСЃ*/
-void PassingFile						(int request, char *search_text);
-void StringCopy							(char *new_text, char *text);
-void SearchText							();
+/*2 запрос*/
+void PassingFile(int request, char *search_text);
+void StringCopy(char *new_text, char *text);
+void SearchText();
 
-int SearchPunct							(char *text_file, int request, char *search_text);
+int SearchPunct(char *text_file, int request, char *search_text);
 
-/*3 Р·Р°РїСЂРѕСЃ*/
-void OutputStruct						();
+/*3 запрос*/
+void OutputStruct();
 
-/*4 Р·Р°РїСЂРѕСЃ*/
-void SwapStructs						(struct car &Auto1, struct car &Auto2);
-void AddStruct							(struct car *Auto, char *text);
-void ClearStruct						(struct car *Auto);
-void AddStructs							(FILE *StructFile);
-void SortingFile						();
+/*4 запрос*/
+void SwapStructs(struct car &Auto1, struct car &Auto2);
+void AddStruct(struct car *Auto, char *text);
+void ClearStruct(struct car *Auto);
+void AddStructs(FILE *StructFile);
+void SortingFile();
 
-/*РєРѕРґ*/
+/*код*/
 void main() {
 	system("chcp 1251");
 	system("cls");
 
 	int request = 0;
 
-	printf("Р’С‹Р±РёСЂРµС‚Рµ С‚РёРї Р·Р°РїСЂРѕСЃР°:\n");
+	printf("Выбирете тип запроса:\n");
 	EnterRequest();
 
 	_getch();
@@ -160,25 +156,25 @@ int StringLength(char *StringText) {
 }
 
 void FormRequest() {
-	printf("1)Р’РЅРµСЃРµРЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РІ С„Р°Р№Р»\n");
-	printf("2)РџРѕРёСЃРє СЃС‚СЂСѓРєС‚СѓСЂС‹ РІ С„Р°Р№Р»Рµ\n");
-	printf("3)Р’С‹РІРѕРґ СЃС‚СѓРєС‚СѓСЂ РЅР° СЌРєСЂР°РЅ\n");
-	printf("4)РЎРѕСЂС‚РёСЂРѕРІРєР° РґР°РЅРЅС‹С… РІ С„Р°Р№Р»Рµ\n");
-	printf("5)Р—Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹ РїСЂРѕРіСЂР°РјРјС‹\n");
+	printf("1)Внесение структуры в файл\n");
+	printf("2)Поиск структуры в файле\n");
+	printf("3)Вывод стуктур на экран\n");
+	printf("4)Сортировка данных в файле\n");
+	printf("5)Завершение работы программы\n");
 }
 
-int РЎhoiceRequest(int max) {
+int СhoiceRequest(int max) {
 	int	request = 0;
-	bool	error	= true;
+	bool	error = true;
 
 	do {
 		scanf("%d", &request);
 
 		if (getchar() != '\n') {
-			printf("РћС€РёР±РєР° РІРІРѕРґР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+			printf("Ошибка ввода. Повторите попытку: ");
 			while (getchar() != '\n');
 		}
-		else (request < 1 || request > max) ? printf("РћС€РёР±РєР°. Р”Р°РЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ") : error = false;
+		else (request < 1 || request > max) ? printf("Ошибка. Данный запрос отсутствует. Повторите попытку: ") : error = false;
 
 	} while (error);
 
@@ -200,18 +196,18 @@ void ChoiceFunction(int request) {
 		SortingFile();
 		break;
 	case 5:
-		exit(1);
+		exit(0);
 	}
 }
 
 void EnterStructs() {
 	int count = 0;
 
-	printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂСѓРєС‚СѓСЂ: ");
+	printf("Введите количество структур: ");
 	count = EnterCountStructs();
 
 	struct car *Auto = (struct car *)malloc(sizeof(struct car *) * count);
-	
+
 	FormStruct();
 
 	FILE *StructFile = fopen(WAY_FILE, "a");
@@ -221,26 +217,26 @@ void EnterStructs() {
 	}
 
 	for (int i = 0; i < count; i++) {
-		printf("Р’РІРѕРґ %d СЃС‚СЂСѓРєС‚СѓСЂС‹:\n", i + 1);
+		printf("Ввод %d структуры:\n", i + 1);
 		EnterStruct(&Auto[i]);
 		EntryFile(StructFile, Auto[i]);
 	}
-
 	fclose(StructFile);
+
 	RepeatRequest(1);
 }
 
 void RepeatRequest(int exist_file) {
-	exist_file ? printf("Р‘СѓРґРµС‚ РµС‰Рµ Р·Р°РїСЂРѕСЃ?(1-РґР°; 2-РЅРµС‚)\n") : printf("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ. Р‘СѓРґСѓС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЊСЃСЏ РґСЂСѓРіРёРµ Р·Р°РїСЂРѕСЃС‹?(1-РґР°; 2-РЅРµС‚)\n");
-	printf("Р’РІРѕРґ: ");
-	int request = РЎhoiceRequest(2);
-	request == 1 ? EnterRequest() : exit(1);
+	exist_file ? printf("Будет еще запрос?(1-да; 2-нет)\n") : printf("Файл не найден. Будут производиться другие запросы?(1-да; 2-нет)\n");
+	printf("Ввод: ");
+	int request = СhoiceRequest(2);
+	request == 1 ? EnterRequest() : exit(0);
 }
 
 void EnterRequest() {
 	FormRequest();
-	printf("Р’РІРѕРґ: ");
-	int request = РЎhoiceRequest(5);
+	printf("Ввод: ");
+	int request = СhoiceRequest(5);
 	ChoiceFunction(request);
 }
 
@@ -260,11 +256,11 @@ int EnterCountStructs() {
 	do {
 		scanf("%d", &count);
 
-		if (getchar() != '\n' ) {
-			printf("РћС€РёР±РєР° РІРІРѕРґР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+		if (getchar() != '\n') {
+			printf("Ошибка ввода. Повторите попытку: ");
 			while (getchar() != '\n');
 		}
-		else (count < 1) ? printf("РћС€РёР±РєР°. РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РїРѕР»РѕР¶РёРµР»СЊРЅРѕ. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ") : error = false;
+		else (count < 1) ? printf("Ошибка. Количество элементов положиельно. Повторите попытку: ") : error = false;
 
 	} while (error);
 
@@ -272,36 +268,36 @@ int EnterCountStructs() {
 }
 
 void FormStruct() {
-	printf("Р’РІРµРґРёС‚Рµ СЃС‚СЂСѓРєС‚СѓСЂСѓ РІ С„РѕСЂРјРµ:\n");
+	printf("Введите структуру в форме:\n");
 	FormStructText();
 }
 
 void FormStructText() {
-	printf("\t1)РёРјСЏ(Р±РµР· РёРЅРёС†РёР°Р»РѕРІ)\n");
-	printf("\t2)РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ\n");
-	printf("\t3)РЅРѕРјРµСЂ С‚РµС…РїР°СЃРїРѕСЂС‚Р°\n");
-	printf("\t4)РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ(РІ РІРёРґРµ РґРґ:РјРј:РіРіРіРі)\n");
-	printf("\t5)С‚РµР»РµС„РѕРЅ\n");
-	printf("\t6)РѕС‚РґРµР»РµРЅРёРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Р“РР‘Р”Р”\n");
+	printf("\t1)имя(без инициалов)\n");
+	printf("\t2)номер автомобиля\n");
+	printf("\t3)номер техпаспорта\n");
+	printf("\t4)дата рождения(в виде дд:мм:гггг)\n");
+	printf("\t5)телефон\n");
+	printf("\t6)отделение регистрации ГИБДД\n");
 }
 
 void EnterStruct(struct car *Auto) {
-	printf("\tР’РІРµРґРёС‚Рµ РёРјСЏ: ");
+	printf("\tВведите имя: ");
 	EnterName(Auto->name);
 
-	printf("\tР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ: ");
-	EnterNumberOrSymbol(Auto->NumberCur , MAX_LENGTH_NUMBER_CUR);
+	printf("\tВведите номер автомобиля: ");
+	EnterNumberOrSymbol(Auto->NumberCur, MAX_LENGTH_NUMBER_CUR);
 
-	printf("\tР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµС…РїР°СЃРїРѕСЂС‚Р°: ");
-	EnterNumberOrSymbol(Auto->NumberTechnicalCertificate , MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION);
+	printf("\tВведите номер техпаспорта: ");
+	EnterNumberOrSymbol(Auto->NumberTechnicalCertificate, MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION);
 
-	printf("\tР’РІРµРґРёС‚Рµ РґР°С‚Сѓ СЂРѕР¶РґРµРЅРёСЏ: ");
+	printf("\tВведите дату рождения: ");
 	EnterDate(Auto->date);
 
-	printf("\tР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°: ");
+	printf("\tВведите номер телефона: ");
 	EnterPhone(Auto->phone);
 
-	printf("\tР’РІРµРґРёС‚Рµ РѕС‚РґРµР»РµРЅРёРµ СЂРµРіРёСЃС‚СЂР°С†РёРё Р“РР‘Р”Р”: ");
+	printf("\tВведите отделение регистрации ГИБДД: ");
 	EnterOfficeGIBDD(Auto->OfficeGIBDD);
 }
 
@@ -311,21 +307,21 @@ void EnterName(char *word) {
 
 	for (int i = 0; i < length; i++) {
 		if (!(CHECK_NAME)) {
-			printf("\tРћС€РёР±РєР° РІРІРѕРґР° РёРјРµРЅРё. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+			printf("\tОшибка ввода имени. Повторите попытку: ");
 			EnterName(word);
 			break;
 		}
 	}
 }
 
-void EnterNumberOrSymbol(char *word , int max_length) {
+void EnterNumberOrSymbol(char *word, int max_length) {
 	int length = 0;
 	EnterWord(word, max_length, &length);
 
 	for (int i = 0; i < length; i++) {
 		if (!(CODE_NUMBER_OR_SYMBOL)) {
-			printf("\tРћС€РёР±РєР° РІРІРѕРґР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
-			EnterNumberOrSymbol(word , max_length);
+			printf("\tОшибка ввода. Повторите попытку: ");
+			EnterNumberOrSymbol(word, max_length);
 			break;
 		}
 	}
@@ -336,33 +332,33 @@ void EnterDate(char *word) {
 	EnterWord(word, LENGTH_DATE, &length);
 
 	if (!(CHECK_CODE_DATE)) {
-		printf("\tРћС€РёР±РєР° РІРІРѕРґР° РґР°С‚С‹. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+		printf("\tОшибка ввода даты. Повторите попытку: ");
 		EnterDate(word);
 	}
 }
 
 void EnterPhone(char *word) {
-	int	length		= 0,
-		brace_left	= 0,
-		brace_right	= 0;
+	int	length = 0,
+		brace_left = 0,
+		brace_right = 0;
 
 	EnterWord(word, MAX_LENGTH_PHONE, &length);
 	if (!(word[0] == '+' || ((int)word[0] >= 48 && (int)word[0] <= 57))) {
-		printf("\tРћС€РёР±РєР° РІРІРѕРґР° РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+		printf("\tОшибка ввода номера телефона. Повторите попытку: ");
 		EnterPhone(word);
 	}
 	for (int i = 1; i < length; i++) {
 		if (word[i] == '(') brace_left++;
 		else if (word[i] == ')')brace_right++;
-		else if (!	(CODE_NUMBER_SYMBOL || word[i] == '(' || word[i] == ')' || word[i] == ' ' || FINISH_SYMBOL) || 
-					(word[i] == ')' && brace_left == 0)) {
-			printf("\tРћС€РёР±РєР° РІРІРѕРґР° РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+		else if (!(CODE_NUMBER_SYMBOL || word[i] == '(' || word[i] == ')' || word[i] == ' ' || FINISH_SYMBOL) ||
+			(word[i] == ')' && brace_left == 0)) {
+			printf("\tОшибка ввода номера телефона. Повторите попытку: ");
 			EnterPhone(word);
 			break;
 		}
 
 		if (brace_left > 1 || brace_right > 1) {
-			printf("\tРћС€РёР±РєР° РІРІРѕРґР° РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР°. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+			printf("\tОшибка ввода номера телефона. Повторите попытку: ");
 			EnterPhone(word);
 			break;
 		}
@@ -375,7 +371,7 @@ void EnterOfficeGIBDD(char *word) {
 
 	for (int i = 0; i < length; i++) {
 		if (!(CHECK_OFFICE_GIBDD)) {
-			printf("\tРћС€РёР±РєР° РІРІРѕРґР° РѕС‚РґРµР»РµРЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё Р“РР‘Р”Р”. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ: ");
+			printf("\tОшибка ввода отделения регистрации ГИБДД. Повторите попытку: ");
 			EnterOfficeGIBDD(word);
 			break;
 		}
@@ -394,18 +390,18 @@ void EnterWord(char *word, int max_length, int *length) {
 
 }
 
-/*2 Р·Р°РїСЂРѕСЃ*/
+/*2 запрос*/
 void SearchText() {
-	printf("Р’С‹Р±РµСЂРµС‚Рµ РєСЂРёС‚РµСЂРёР№ РїРѕРёСЃРєР°:\n");
+	printf("Выберете критерий поиска:\n");
 	FormStructText();
-	printf("Р’РІРѕРґ: ");
+	printf("Ввод: ");
 
-	int request = РЎhoiceRequest(6);
+	int request = СhoiceRequest(6);
 
-	printf("Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚ РґР»СЏ РїРѕРёСЃРєР°: ");
+	printf("Введите текст для поиска: ");
 	char search_text[MAX_LENGTH_OFFICEGIBDD] = "";
 	switch (request) {
-	case 1: 
+	case 1:
 		EnterName(search_text);
 		break;
 	case 2:
@@ -425,27 +421,27 @@ void SearchText() {
 		break;
 	}
 
-	PassingFile(request , search_text);
+	PassingFile(request, search_text);
 	RepeatRequest(1);
 }
 
-void PassingFile(int request , char *search_text) {
+void PassingFile(int request, char *search_text) {
 	FILE *StructFile = fopen(WAY_FILE, "r");
 	if (StructFile == NULL) {
 		fclose(StructFile);
 		RepeatRequest(0);
 	}
 	else {
-		char	text_file	[MAX_LENGTH_STRING]	= "",
-			buf_text_file	[MAX_LENGTH_STRING]	= "";
-		int	coincidence				= 0,
-			count					= 0;
+		char	text_file[MAX_LENGTH_STRING] = "",
+			buf_text_file[MAX_LENGTH_STRING] = "";
+		int	coincidence = 0,
+			count = 0;
 
 		while (fgets(text_file, MAX_LENGTH_STRING, StructFile) != NULL) {
 			text_file[StringLength(text_file) - 1] = '\0';
 
-			StringCopy(buf_text_file , text_file);
-			coincidence = SearchPunct(text_file , request , search_text);
+			StringCopy(buf_text_file, text_file);
+			coincidence = SearchPunct(text_file, request, search_text);
 
 			if (coincidence) {
 				printf("%s\n", buf_text_file);
@@ -453,7 +449,7 @@ void PassingFile(int request , char *search_text) {
 			}
 		}
 
-		if (!count) printf("РЎРѕРІРїР°РґРµРЅРёР№ РЅРµ РЅР°Р№РґРµРЅРѕ!\n");
+		if (!count) printf("Совпадений не найдено!\n");
 	}
 
 	fclose(StructFile);
@@ -463,15 +459,15 @@ void StringCopy(char *new_text, char *text) {
 	for (int i = 0; i < MAX_LENGTH_STRING; i++)
 		new_text[i] = '\0';
 
-	int length = StringLength(text) ;
+	int length = StringLength(text);
 	for (int i = 0; i < length; i++)
 		new_text[i] = text[i];
 }
 
-int SearchPunct(char *text_file, int request , char *search_text) {
-	int	length		= StringLength(text_file),
-		position_tub	= 0,
-		coincidence	= 1;
+int SearchPunct(char *text_file, int request, char *search_text) {
+	int	length = StringLength(text_file),
+		position_tub = 0,
+		coincidence = 1;
 
 	for (int i = 0; i < (request - 1); i++) {
 		position_tub = PositionTub(text_file);
@@ -479,12 +475,12 @@ int SearchPunct(char *text_file, int request , char *search_text) {
 	}
 
 	for (int i = 0; search_text[i] != '\n' || search_text[i] != '\0'; i++) {
-		if ((search_text[i] == '\n' || search_text[i] == '\0') && i > 0 ) {
+		if ((search_text[i] == '\n' || search_text[i] == '\0') && i > 0) {
 			break;
 		}
 
-		if (text_file[i] != search_text[i] || 
-			((search_text[i] == '\n'   || search_text[i] == '\0') && i < StringLength(search_text))) {
+		if (text_file[i] != search_text[i] ||
+			((search_text[i] == '\n' || search_text[i] == '\0') && i < StringLength(search_text))) {
 			coincidence = 0;
 			break;
 		}
@@ -503,7 +499,7 @@ int PositionTub(char *word) {
 	return NULL;
 }
 
-/*3 Р·Р°РїСЂРѕСЃ*/
+/*3 запрос*/
 void OutputStruct() {
 	FILE *StructFile = fopen(WAY_FILE, "r");
 	if (StructFile == NULL) {
@@ -519,7 +515,7 @@ void OutputStruct() {
 	}
 }
 
-/*4 Р·Р°РїСЂРѕСЃ*/
+/*4 запрос*/
 void SortingFile() {
 	FILE *StructFile = fopen(WAY_FILE, "r");
 	if (StructFile == NULL) {
@@ -528,23 +524,24 @@ void SortingFile() {
 	}
 	else {
 		AddStructs(StructFile);
+		fclose(StructFile);
 		RepeatRequest(1);
 	}
 }
 
 void AddStructs(FILE *StructFile) {
-	char	text_file[MAX_LENGTH_STRING]	= "";
-	int	count				= 0,
-		max_length_name			= 0;
+	char	text_file[MAX_LENGTH_STRING] = "";
+	int	count = 0,
+		max_length_name = 0;
 
 	while (fgets(text_file, MAX_LENGTH_STRING, StructFile) != NULL) count++;
 
-	struct car *Auto = (struct car *)malloc(sizeof(struct car *) * count);
+	struct car *Auto = (struct car *)calloc(count + 1, sizeof(struct car *));
 	rewind(StructFile);
-	
+
 	for (int i = 0; i < count; i++) {
 		fgets(text_file, MAX_LENGTH_STRING, StructFile);
-		AddStruct(&Auto[i] , text_file);
+		AddStruct(&Auto[i], text_file);
 	}
 	for (int i = 0; i < count; i++)
 		if (StringLength(Auto[i].name) > max_length_name) max_length_name = StringLength(Auto[i].name);
@@ -553,33 +550,33 @@ void AddStructs(FILE *StructFile) {
 		for (int i = 0; i < count; i++) {
 			for (int j = i + 1; j < count; j++) {
 				if (Auto[i].name[k] && Auto[j].name[k]) {
-					if(!k)
-						if (((int)Auto[i].name[0] > (int)Auto[j].name[0]))
+					if (!k)
+						if (((int)Auto[i].name[0] >(int)Auto[j].name[0]))
 							SwapStructs(Auto[i], Auto[j]);
 
-					if (((int)Auto[i].name[k] >(int)Auto[j].name[k]) && 
-						((int)Auto[i].name[k - 1] ==(int)Auto[j].name[k - 1]))
-							SwapStructs(Auto[i], Auto[j]);
+					if (((int)Auto[i].name[k] >(int)Auto[j].name[k]) &&
+						((int)Auto[i].name[k - 1] == (int)Auto[j].name[k - 1]))
+						SwapStructs(Auto[i], Auto[j]);
 				}
 			}
 		}
 
 	fclose(StructFile);
 
-	StructFile = fopen(WAY_FILE, "w");
+	FILE *StructFile_new = fopen(WAY_FILE, "w");
 	for (int i = 0; i < count; i++)
-		EntryFile(StructFile, Auto[i]);
-	fclose(StructFile);
+		EntryFile(StructFile_new, Auto[i]);
+	fclose(StructFile_new);
 }
 
 void SwapStructs(struct car &Auto1, struct car &Auto2) {
 	struct car tmp;
-	tmp	= Auto2;
-	Auto2	= Auto1;
-	Auto1	= tmp;
+	tmp = Auto2;
+	Auto2 = Auto1;
+	Auto1 = tmp;
 }
 
-void AddStruct(struct car *Auto , char *text) {
+void AddStruct(struct car *Auto, char *text) {
 	int position_tub = 0;
 
 	ClearStruct(Auto);
@@ -620,15 +617,15 @@ void AddStruct(struct car *Auto , char *text) {
 
 void ClearStruct(struct car *Auto) {
 	for (int i = 0; i < MAX_LENGTH_NAME; i++)
-		Auto->name[i]						= '\0';
+		Auto->name[i] = '\0';
 	for (int i = 0; i < MAX_LENGTH_NUMBER_CUR; i++)
-		Auto->NumberCur[i]					= '\0';
+		Auto->NumberCur[i] = '\0';
 	for (int i = 0; i < MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION; i++)
-		Auto->NumberTechnicalCertificate[i]			= '\0';
+		Auto->NumberTechnicalCertificate[i] = '\0';
 	for (int i = 0; i < LENGTH_DATE; i++)
-		Auto->date[i]						= '\0';
+		Auto->date[i] = '\0';
 	for (int i = 0; i < MAX_LENGTH_PHONE; i++)
-		Auto->phone[i]						= '\0';
+		Auto->phone[i] = '\0';
 	for (int i = 0; i < MAX_LENGTH_OFFICEGIBDD; i++)
-		Auto->OfficeGIBDD[i]					= '\0';
+		Auto->OfficeGIBDD[i] = '\0';
 }
