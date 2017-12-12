@@ -25,116 +25,116 @@
 /*Константы и участки кода*/
 
 /*Константы длины*/
-#define	MAX_LENGTH_NAME						35
-#define	MAX_LENGTH_NUMBER_CUR					20
-#define	MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION		40
-#define LENGTH_DATE						12
-#define	MAX_LENGTH_PHONE					25
-#define	MAX_LENGTH_OFFICEGIBDD					60
+#define	MAX_LENGTH_NAME					35
+#define	MAX_LENGTH_NUMBER_CUR				20
+#define	MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION	40
+#define LENGTH_DATE					12
+#define	MAX_LENGTH_PHONE				25
+#define	MAX_LENGTH_OFFICEGIBDD				60
 
 /*Путь к файлу для работы*/
-#define WAY_FILE						"StructFile.txt"
+#define WAY_FILE					"StructFile.txt"
 
 /*Константы для проверок ввода*/
-#define MAX_LENGTH_STRING					MAX_LENGTH_NAME					+	\
-								MAX_LENGTH_NUMBER_CUR				+	\
-								MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION	+	\
-								LENGTH_DATE					+	\
-								MAX_LENGTH_PHONE				+	\
-								MAX_LENGTH_OFFICEGIBDD				+	\
-								10
+#define MAX_LENGTH_STRING				MAX_LENGTH_NAME				+\
+							MAX_LENGTH_NUMBER_CUR			+\
+							MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION+\
+							LENGTH_DATE				+\
+							MAX_LENGTH_PHONE			+\
+							MAX_LENGTH_OFFICEGIBDD			+\
+							10
 
-#define CODE_ENGLESH_SYMBOL_SMALL				((int)word[i] >= 65				&& (int)word[i] <= 90)
-#define CODE_ENGLESH_SYMBOL_BIGG				((int)word[i] >= 97				&& (int)word[i] <= 122)
-#define CODE_RUSSIAN_SYMBOL					((int)word[i] >= -64				&& (int)word[i] <= -1)
-#define CODE_NUMBER_SYMBOL					((int)word[i] >= 48				&& (int)word[i] <= 57)
-#define FINISH_SYMBOL						word[i] == '\n'					|| word[i] == '\0'
+#define CODE_ENGLESH_SYMBOL_SMALL			((int)word[i] >= 65			&& (int)word[i] <= 90)
+#define CODE_ENGLESH_SYMBOL_BIGG			((int)word[i] >= 97			&& (int)word[i] <= 122)
+#define CODE_RUSSIAN_SYMBOL				((int)word[i] >= -64			&& (int)word[i] <= -1)
+#define CODE_NUMBER_SYMBOL				((int)word[i] >= 48			&& (int)word[i] <= 57)
+#define FINISH_SYMBOL					word[i] == '\n'				|| word[i] == '\0'
 
-#define CODE_ENGLESH_SYMBOL					CODE_ENGLESH_SYMBOL_SMALL			||\
-								CODE_ENGLESH_SYMBOL_BIGG
+#define CODE_ENGLESH_SYMBOL				CODE_ENGLESH_SYMBOL_SMALL		||\
+							CODE_ENGLESH_SYMBOL_BIGG
 
-#define CHECK_NAME						CODE_ENGLESH_SYMBOL				||\
-								CODE_RUSSIAN_SYMBOL				||\
-								FINISH_SYMBOL
+#define CHECK_NAME					CODE_ENGLESH_SYMBOL			||\
+							CODE_RUSSIAN_SYMBOL			||\
+							FINISH_SYMBOL
 
-#define CODE_NUMBER_OR_SYMBOL					CODE_ENGLESH_SYMBOL				||\
-								CODE_NUMBER_SYMBOL				||\
-								FINISH_SYMBOL  
+#define CODE_NUMBER_OR_SYMBOL				CODE_ENGLESH_SYMBOL			||\
+							CODE_NUMBER_SYMBOL			||\
+							FINISH_SYMBOL  
 
-#define CHECK_CODE_DATE						(((int)word[0]>= 48				&& (int)word[0] <= 57)	 &&\
-								((int)word[1] >= 48				&& (int)word[1] <= 57)	 &&\
-								((int)word[3] >= 48				&& (int)word[3] <= 57)	 &&\
-								((int)word[4] >= 48				&& (int)word[4] <= 57)	 &&\
-								((int)word[6] >= 48				&& (int)word[6] <= 57)	 &&\
-								((int)word[7] >= 48				&& (int)word[7] <= 57)	 &&\
-								((int)word[8] >= 48				&& (int)word[8] <= 57)	 &&\
-								((int)word[9] >= 48				&& (int)word[9] <= 57)	 &&\
-								((word[2] == '.'				&& word[5] == '.')	 ||\
-								(word[2] == ':'					&& word[5] == ':')	 ||\
-								(word[2] == ' '					&& word[5] == ' '))	 &&\
-								((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 31) && \
-								((((int)word[3] - (int)('0')) * 10 + ((int)word[4] - (int)('0'))) <= 12) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > 1900) && \
-								((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < 2017))
+#define CHECK_CODE_DATE					(((int)word[0]>= 48			&& (int)word[0] <= 57)	 &&\
+							((int)word[1] >= 48			&& (int)word[1] <= 57)	 &&\
+							((int)word[3] >= 48			&& (int)word[3] <= 57)	 &&\
+							((int)word[4] >= 48			&& (int)word[4] <= 57)	 &&\
+							((int)word[6] >= 48			&& (int)word[6] <= 57)	 &&\
+							((int)word[7] >= 48			&& (int)word[7] <= 57)	 &&\
+							((int)word[8] >= 48			&& (int)word[8] <= 57)	 &&\
+							((int)word[9] >= 48			&& (int)word[9] <= 57)	 &&\
+							((word[2] == '.'			&& word[5] == '.')	 ||\
+							(word[2] == ':'				&& word[5] == ':')	 ||\
+							(word[2] == ' '				&& word[5] == ' '))	 &&\
+							((((int)word[0] - (int)('0')) * 10 + ((int)word[1] - (int)('0'))) <= 31) && \
+							((((int)word[3] - (int)('0')) * 10 + ((int)word[4] - (int)('0'))) <= 12) && \
+							((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) > 1900) && \
+							((((int)word[6] - (int)('0')) * 1000 + ((int)word[7] - (int)('0')) * 100 + ((int)word[8] - (int)('0')) * 10 + ((int)word[9] - (int)('0'))) < 2017))
 
-#define CHECK_OFFICE_GIBDD					CODE_ENGLESH_SYMBOL_SMALL			||\
-								CODE_ENGLESH_SYMBOL_BIGG			||\
-								CODE_RUSSIAN_SYMBOL				||\
-								CODE_NUMBER_SYMBOL				||\
-								(FINISH_SYMBOL					|| word[i] == ' ')
+#define CHECK_OFFICE_GIBDD				CODE_ENGLESH_SYMBOL_SMALL		||\
+							CODE_ENGLESH_SYMBOL_BIGG		||\
+							CODE_RUSSIAN_SYMBOL			||\
+							CODE_NUMBER_SYMBOL			||\
+							(FINISH_SYMBOL				|| word[i] == ' ')
 
 struct car {
-	char	name[MAX_LENGTH_NAME];
-	char	NumberCur[MAX_LENGTH_NUMBER_CUR];
-	char	NumberTechnicalCertificate[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
-	char	date[LENGTH_DATE];
-	char	phone[MAX_LENGTH_PHONE];
-	char	OfficeGIBDD[MAX_LENGTH_OFFICEGIBDD];
+	char	name					[MAX_LENGTH_NAME];
+	char	NumberCur				[MAX_LENGTH_NUMBER_CUR];
+	char	NumberTechnicalCertificate		[MAX_LENGTH_NUMBER_TECHNICALCERTIFICATION];
+	char	date					[LENGTH_DATE];
+	char	phone					[MAX_LENGTH_PHONE];
+	char	OfficeGIBDD				[MAX_LENGTH_OFFICEGIBDD];
 };
 
 /*функции*/
 
 /*общие*/
-void EntryFile(FILE *file, struct car Auto);
-void EnterNumberOrSymbol(char *word, int max_length);
-void RepeatRequest(int exist_file);
-void ChoiceFunction(int request);
-void EnterOfficeGIBDD(char *word);
-void EnterPhone(char *word);
-void EnterName(char *word);
-void EnterDate(char *word);
-void FormStructText();
-void EnterRequest();
-void FormRequest();
-void FormStruct();
+void EntryFile						(FILE *file, struct car Auto);
+void EnterNumberOrSymbol				(char *word, int max_length);
+void RepeatRequest					(int exist_file);
+void ChoiceFunction					(int request);
+void EnterOfficeGIBDD					(char *word);
+void EnterPhone						(char *word);
+void EnterName						(char *word);
+void EnterDate						(char *word);
+void FormStructText					();
+void EnterRequest					();
+void FormRequest					();
+void FormStruct						();
 
-int StringLength(char *StringText);
-int PositionTub(char *word);
-int СhoiceRequest(int max);
+int StringLength					(char *StringText);
+int PositionTub						(char *word);
+int СhoiceRequest					(int max);
 
 /*1 запрос*/
-void EnterWord(char *word, int max_length, int *length);
-void EnterStruct(struct car *Auto);
-void EnterStructs();
+void EnterWord						(char *word, int max_length, int *length);
+void EnterStruct					(struct car *Auto);
+void EnterStructs					();
 
-int EnterCountStructs();
+int EnterCountStructs					();
 
 /*2 запрос*/
-void PassingFile(int request, char *search_text);
-void StringCopy(char *new_text, char *text);
-void SearchText();
+void PassingFile					(int request, char *search_text);
+void StringCopy						(char *new_text, char *text);
+void SearchText						();
 
-int SearchPunct(char *text_file, int request, char *search_text);
+int SearchPunct						(char *text_file, int request, char *search_text);
 
 /*3 запрос*/
-void OutputStruct();
+void OutputStruct					();
 
 /*4 запрос*/
-void SwapStructs(struct car &Auto1, struct car &Auto2);
-void AddStruct(struct car *Auto, char *text);
-void ClearStruct(struct car *Auto);
-void AddStructs(FILE *StructFile);
-void SortingFile();
+void SwapStructs					(struct car &Auto1, struct car &Auto2);
+void AddStruct						(struct car *Auto, char *text);
+void ClearStruct					(struct car *Auto);
+void AddStructs						(FILE *StructFile);
+void SortingFile					();
 
 /*код*/
 void main() {
