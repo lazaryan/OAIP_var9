@@ -194,7 +194,7 @@ void ChoiceFunction(int request) {
 		SortingFile();
 		break;
 	default:
-		break;
+		exit(0);
 	}
 }
 
@@ -390,11 +390,16 @@ void EnterWord(char *word, int max_length, int *length) {
 
 /*2 запрос*/
 void SearchText() {
+	printf("Будут вноситься структуры в файл перед поиском?(1-да 2-нет)\n");
+	printf("Ввод: ");
+	int request = СhoiceRequest(2);
+	if(request == 1)
+		EnterStructs();
 	printf("Выберете критерий поиска:\n");
 	FormStructText();
 	printf("Ввод: ");
 
-	int request = СhoiceRequest(6);
+	request = СhoiceRequest(6);
 
 	printf("Введите текст для поиска: ");
 	char search_text[MAX_LENGTH_OFFICEGIBDD] = "";
@@ -522,7 +527,7 @@ void SortingFile() {
 	}
 	else {
 		AddStructs(StructFile);
-		fclose(StructFile);
+		//fclose(StructFile);
 	}
 	fclose(StructFile);
 }
